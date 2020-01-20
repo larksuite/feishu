@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
-    - name: Print Secret
-      run: python main.py
+    - name: Run Test
+      run: echo "run test"
       env:
         KEY: "${{ secrets.KEY }}"
