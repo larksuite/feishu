@@ -14,8 +14,11 @@ cur=$(pwd)
 
 echo "cur dir is $cur"
 
+# https://pycryptodome.readthedocs.io/en/latest/src/installation.html
 if [  -n "$(uname -a | grep Ubuntu)" ]; then
-    sudo apt-get install -y python-dev
+    sudo apt-get install build-essential python-dev
+    pip install pycryptodomex
+    python -m Cryptodome.SelfTest
 else
     echo "not ubuntu"
 fi
