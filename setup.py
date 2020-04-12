@@ -17,7 +17,7 @@ AUTHOR = 'chenyunpeng.1024'
 # 项目运行需要的依赖
 REQUIRES = [
     'requests>=2.2,<3.0.0',
-    'pycrypto>=2.6.1,<3.0.0',
+    'pycryptodome>=3.9.0,<4.0.0',
     'attrs>=19.0.0,<20.0.0',
     'python-dateutil>=2.8.0,<3.0.0'
 ]
