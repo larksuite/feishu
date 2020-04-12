@@ -16,7 +16,12 @@ echo "cur dir is $cur"
 
 # https://pycryptodome.readthedocs.io/en/latest/src/installation.html
 if [  -n "$(uname -a | grep Ubuntu)" ]; then
-    sudo apt-get install build-essential python-dev
+    if [[ `python -c "import sys; print(sys.version)"` == *"PyPy"* ]]; then
+      sudo apt-get install build-essential pypy-dev
+    else
+      sudo apt-get install build-essential python-dev
+    fi
+
     pip install pycryptodomex
     python -m Cryptodome.SelfTest
 else
