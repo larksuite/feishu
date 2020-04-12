@@ -15,7 +15,7 @@ cur=$(pwd)
 echo "cur dir is $cur"
 
 if [  -n "$(uname -a | grep Ubuntu)" ]; then
-    apt-get install python-dev
+    sudo apt-get install python-dev
 else
     echo "not ubuntu"
 fi
