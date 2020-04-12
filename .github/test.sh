@@ -14,6 +14,12 @@ cur=$(pwd)
 
 echo "cur dir is $cur"
 
+if [  -n "$(uname -a | grep Ubuntu)" ]; then
+    apt-get install python-dev
+else
+    echo "not ubuntu"
+fi
+
 if [[ $1 == "cov" ]]
 then
     tox | tee test_output.txt
