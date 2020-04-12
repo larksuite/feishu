@@ -17,8 +17,6 @@ jobs:
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
     - name: Run Test
-      run:
-      - ./.github/deps.sh
-      - make all-cov
+      run: ./.github/deps.sh && make all-cov
       env:
         KEY: "${{ secrets.KEY }}"
