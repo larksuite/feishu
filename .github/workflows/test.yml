@@ -19,4 +19,6 @@ jobs:
     - name: Run Test
       run: ./.github/deps.sh && make all-cov
       env:
+        APP_ID_1: "${{ secrets.APP_ID_1 }}"
+        APP_SECRET_1: "${{ secrets.APP_SECRET_1 }}"
         KEY: "${{ secrets.KEY }}"
