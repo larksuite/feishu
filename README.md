@@ -31,6 +31,7 @@ pip install open_lark
 ## TODO
 
 - 支持 windows(windows-latest)
+- 支持 pypy
 
 ## 丰富的接口
 
