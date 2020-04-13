@@ -6,15 +6,12 @@ set -o pipefail
 # https://pycryptodome.readthedocs.io/en/latest/src/installation.html
 if [  -n "$(uname -a | grep Ubuntu)" ]; then
     if [[ `python -c "import sys; print(sys.version)"` == *"PyPy"* ]]; then
-      sudo apt-get install libssl-dev build-essential pypy-dev
+      sudo apt-get install libssl-dev build-essential pypy-dev gcc
     else
-      sudo apt-get install build-essential python-dev
+      sudo apt-get install build-essential python-dev gcc
     fi
-
-    pip install pycryptodomex
-    python -m Cryptodome.SelfTest
 fi
 
 if [  -n "$(uname -a | grep Darwin)" ]; then
-    brew install openssl
+    brew install openssl gcc
 fi
