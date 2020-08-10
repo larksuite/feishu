@@ -334,7 +334,6 @@ class OpenLark(APIIDMixin,
         :rtype str
 
         https://open.feishu.cn/document/ukTMukTMukTM/uADN14CM0UjLwQTN
-        https://open.feishu.cn/document/ukTMukTMukTM/uEjNz4SM2MjLxYzM
         """
         key_app_access_token = 'open_lark:{}:app_token'.format(self.app_id)
 
@@ -370,7 +369,6 @@ class OpenLark(APIIDMixin,
 
         注意：如果是 ISV 应用，那么必须在构造 OpenLark 实例的时候，必须传入 is_isv=True 和 tenant_key
 
-        https://open.feishu.cn/document/ukTMukTMukTM/uIjNz4iM2MjLyYzM
         https://open.feishu.cn/document/ukTMukTMukTM/uMjNz4yM2MjLzYzM
         """
 
@@ -382,7 +380,7 @@ class OpenLark(APIIDMixin,
         if self.is_isv:
             if not self.tenant_key:
                 raise LarkInvalidArguments(msg='[tenant_access_token] '
-                                               'isv 应用获取 tenant_access_token 必须先设置 tenant_key')
+                                               'must set tenant_key for isv app get tenant_access_token')
 
             body = {
                 'app_access_token': self.app_access_token,

@@ -12,14 +12,12 @@ if TYPE_CHECKING:
 
 
 class APIOAuthMixin(object):
-    def gen_oauth_url(self, state='', use_auth_v1=False):
+    def gen_oauth_url(self, state=''):
         """生成 OAuth 授权链接，请求身份验证
 
         :type self: OpenLark
         :param state: 用来维护请求和回调状态的附加字符串，在授权完成回调时会附加此参数，
                       应用可以根据此字符串来判断上下文关系
-        :param use_auth_v1: 使用 auth v1 api
-        :type use_auth_v1: bool
         :return: 跳转链接
         :rtype: str
 
@@ -27,25 +25,18 @@ class APIOAuthMixin(object):
 
         特别需要注意的是：老 api 获取的 expire_in 是时间戳，新 api 获取的 expire_in 是秒数
 
-        老 api：https://open.feishu.cn/document/ukTMukTMukTM/ucTNz4yN1MjL3UzM
-
-        新 api：https://open.feishu.cn/document/ukTMukTMukTM/ukzN4UjL5cDO14SO3gTN
+        https://open.feishu.cn/document/ukTMukTMukTM/ukzN4UjL5cDO14SO3gTN
         """
-        if use_auth_v1:
-            url = '/open-apis/authen/v1/index?redirect_uri={}&app_id={}&state={}'
-        else:
-            url = '/connect/qrconnect/page/sso/?redirect_uri={}&app_id={}&state={}'
+        url = '/open-apis/authen/v1/index?redirect_uri={}&app_id={}&state={}'
 
         return self._gen_request_url(url.format(self.oauth_redirect_uri, self.app_id, state))
 
-    def oauth_code_2_session(self, code, use_auth_v1=False):
+    def oauth_code_2_session(self, code):
         """获取登录用户身份
 
         :type self: OpenLark
-        :param code: 扫码登录后会自动302到redirect_uri并带上此参数
+        :param code: 扫码登录后会自动 302 到 redirect_uri 并带上此参数
         :type code: str
-        :param use_auth_v1: 使用 auth v1 api
-        :type use_auth_v1: bool
         :return: OAuthCodeToSessionResp
         :rtype: OAuthCodeToSessionResp
 
@@ -53,14 +44,9 @@ class APIOAuthMixin(object):
 
         特别需要注意的是：老 api 获取的 expire_in 是时间戳，新 api 获取的 expire_in 是秒数
 
-        老 api：https://open.feishu.cn/document/ukTMukTMukTM/ukTNz4SO1MjL5UzM
-
-        新 api：https://open.feishu.cn/document/ukTMukTMukTM/uEDO4UjLxgDO14SM4gTN
+        https://open.feishu.cn/document/ukTMukTMukTM/uEDO4UjLxgDO14SM4gTN
         """
-        if use_auth_v1:
-            url = self._gen_request_url('/open-apis/authen/v1/access_token')
-        else:
-            url = self._gen_request_url('/connect/qrconnect/oauth2/access_token/')
+        url = self._gen_request_url('/open-apis/authen/v1/access_token')
 
         body = {
             'app_access_token': self.app_access_token,
@@ -69,16 +55,14 @@ class APIOAuthMixin(object):
         }
         res = self._post(url, body)
 
-        return make_datatype(OAuthCodeToSessionResp, res)
+        return make_datatype(OAuthCodeToSessionResp, res.get('data') or {})
 
-    def refresh_user_session(self, refresh_token, use_auth_v1=False):
+    def refresh_user_session(self, refresh_token):
         """刷新用户扫码登录后获取的 access_token
 
         :type self: OpenLark
         :param refresh_token: 扫码登录后会拿到这个值
         :type refresh_token: str
-        :param use_auth_v1: 使用 auth v1 api
-        :type use_auth_v1: bool
         :return: OAuthCodeToSessionResp
         :rtype: OAuthCodeToSessionResp
 
@@ -86,14 +70,9 @@ class APIOAuthMixin(object):
 
         特别需要注意的是：老 api 获取的 expire_in 是时间戳，新 api 获取的 expire_in 是秒数
 
-        老 api：https://open.feishu.cn/document/ukTMukTMukTM/ukTNz4SO1MjL5UzM
-
-        新 api：https://open.feishu.cn/document/ukTMukTMukTM/uQDO4UjL0gDO14CN4gTN
+        https://open.feishu.cn/document/ukTMukTMukTM/uQDO4UjL0gDO14CN4gTN
         """
-        if use_auth_v1:
-            url = self._gen_request_url('/open-apis/authen/v1/refresh_access_token')
-        else:
-            url = self._gen_request_url('/connect/qrconnect/oauth2/access_token/')
+        url = self._gen_request_url('/open-apis/authen/v1/refresh_access_token')
 
         body = {
             "app_access_token": self.app_access_token,
@@ -102,7 +81,7 @@ class APIOAuthMixin(object):
         }
         res = self._post(url, body)
 
-        return make_datatype(OAuthCodeToSessionResp, res)
+        return make_datatype(OAuthCodeToSessionResp, res.get('data') or {})
 
     def oauth_get_user(self, user_access_token):
         """获取用户信息
@@ -118,6 +97,6 @@ class APIOAuthMixin(object):
         res = self._get(url, auth_token=user_access_token)
         data = res['data']
 
-        data['avatar'] = data.get('avatar') or data.get('avatar_url')
+        data['avatar_url'] = data.get('avatar') or data.get('avatar_url')
         data['user_id'] = data.get('user_id') or data.get('employee_id')
         return make_datatype(User, data)

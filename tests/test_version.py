@@ -8,4 +8,4 @@ import unittest
 class TestVersion(unittest.TestCase):
     def test_version(self):
         from open_lark import __version__
-        assert '1.0.0' == __version__
+        assert '0.0.1' == __version__
