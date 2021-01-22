@@ -11,13 +11,6 @@ OpenLark: Lark Open Platform Python SDK  / 飞书开发平台 Python SDK
 pip install open_lark
 ```
 
-更详细的安装文档请点击 [这里](https://cyllibmm.fn.bytedance.net/install.html)
-
-
-## 文档
-
-请点击：https://cyllibmm.fn.bytedance.net/
-
 ## 优势
 
 - 完善的文档和网站
