@@ -8,7 +8,7 @@ OpenLark: Lark Open Platform Python SDK  / 飞书开发平台 Python SDK
 执行
 
 ```bash
-pip install open_lark
+TODO
 ```
 
 ## 优势
