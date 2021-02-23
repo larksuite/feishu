@@ -132,3 +132,4 @@ dmypy.json
 test_output.txt
 ttt
 .env
+feishu.egg-info
