@@ -8,5 +8,12 @@
   "open_message_id": "om_d41a9d199fb6d00a5f4edc5af35f5c0f",
   "message_id": "message_id",
   "test_definition_code": "051A0319-27C3-4686-98AA-9E29FA7E01EC",
-  "image_key": "cb46f811-98ce-4348-aeb3-859168b1053a"
+  "image_key": "cb46f811-98ce-4348-aeb3-859168b1053a",
+  "bot": {
+    "open_lark": {
+      "app_id": "cli_9dc838c6837e1104",
+      "app_secret": "BOT_OPEN_LARK_APP_SECRET",
+      "oauth_redirect_uri": "https://open.feishu.cn/app"
+    }
+  }
 }

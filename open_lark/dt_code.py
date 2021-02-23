@@ -32,9 +32,9 @@ class SimpleUser(object):
 class User(object):
     """用户对象
     """
-    avatar = attr.ib(type=str, default=None)
-    name = attr.ib(type=str, default=None)
-    open_id = attr.ib(type=str, default=None)
+    avatar_url = attr.ib(type=str, default='')
+    name = attr.ib(type=str, default='')
+    open_id = attr.ib(type=str, default='')
     email = attr.ib(type=str, default='')  # 需要申请获取email权限才有
     mobile = attr.ib(type=str, default='')  # 用户手机号，已申请"获取用户手机号"权限的企业自建应用返回该字段
     user_id = attr.ib(type=str, default='')  # 用户的user_id
@@ -105,11 +105,14 @@ class OAuthCodeToSessionResp(object):
     """
     access_token = attr.ib(type=str, default=None)  # user_access_token，用于获取用户资源
     avatar_url = attr.ib(type=str, default=None)  # 用户头像
-    expires_in = attr.ib(type=int, default=None)  # 过期时间，注意：新 api 返回的是秒数，老 api 返回的是时间戳
+    avatar_thumb = attr.ib(type=str, default=None)  # 用户头像 72x72
+    avatar_middle = attr.ib(type=str, default=None)  # 用户头像 240x240
+    avatar_big = attr.ib(type=str, default=None)  # 用户头像 640x640
+    expires_in = attr.ib(type=int, default=None)  # access_token 的有效期，单位: 秒
     name = attr.ib(type=str, default=None)  # 用户姓名
     en_name = attr.ib(type=str, default=None)  # 用户英文姓名
     open_id = attr.ib(type=str, default=None)  # 用户在应用内的唯一标识
     tenant_key = attr.ib(type=str, default=None)  # 当前企业标识
     refresh_token = attr.ib(type=str, default=None)  # 刷新用户 access_token 时使用的 token
-    refresh_expires_in = attr.ib(type=int, default=None)  # refresh_token过期时间，新 api 返回的是秒数，老 api 返回的是时间戳
+    refresh_expires_in = attr.ib(type=int, default=None)  # refresh_token过期时间，秒数
     token_type = attr.ib(type=str, default=None)  # 此处为 Bearer

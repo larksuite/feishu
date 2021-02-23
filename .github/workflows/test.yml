@@ -22,3 +22,4 @@ jobs:
         APP_ID_1: "${{ secrets.APP_ID_1 }}"
         APP_SECRET_1: "${{ secrets.APP_SECRET_1 }}"
         KEY: "${{ secrets.KEY }}"
+        BOT_OPEN_LARK_APP_SECRET: "${{ secrets.BOT_OPEN_LARK_APP_SECRET }}"
