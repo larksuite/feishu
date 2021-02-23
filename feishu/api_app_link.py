@@ -13,12 +13,11 @@ if TYPE_CHECKING:
 
 
 class APIAppLink(object):
-
     def __init__(self, host, qs):
         self.host = host
         self.qs = qs
 
-    def open_lark(self):
+    def open_client(self):
         """唤起飞书客户端的 app_link 链接
         """
 
@@ -92,11 +91,13 @@ class APIAppLink(object):
         base = 'https://{}/client/mini_program/open'.format(self.host)
         return join_url(base, qs, sep='?')
 
-    def open_chat(self, open_id):
+    def open_chat(self, open_id='', open_chat_id=''):
         """打开一个小程序或者小程序中的一个页面
 
         :param open_id: 用户 open_id
         :type open_id: str
+        :param open_chat_id: 用会话ID，包括单聊会话和群聊会话
+        :type open_chat_id: str
         :return: url
         :rtype: str
 
@@ -109,10 +110,12 @@ class APIAppLink(object):
             # https://applink.feishu.cn/client/chat/open?openId=1234567890
         """
         qs = [
-            ('openId', open_id)
+            ('openId', open_id),
+            ('openChatId', open_chat_id)
         ]
         for i in self.qs:
-            qs.append((i[0], i[1]))
+            if i[1]:
+                qs.append((i[0], i[1]))
 
         base = 'https://{}/client/mini_program/open'.format(self.host)
         return join_url(base, qs, sep='?')

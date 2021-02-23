@@ -15,6 +15,8 @@ from feishu.dt_help import make_datatype, to_json_decorator
 
 app_1_app_id = os.environ.get('CI_FEISHU_APP_1_APP_ID')
 app_1_app_secret = os.environ.get('CI_FEISHU_APP_1_APP_SECRET')
+app_1_cli = OpenLark(app_1_app_id, app_1_app_secret)
+app_1_cli_lark = OpenLark(app_1_app_id, app_1_app_secret, is_lark=True)
 
 
 @to_json_decorator
