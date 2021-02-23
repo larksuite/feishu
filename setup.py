@@ -8,7 +8,7 @@ import os
 from setuptools import find_packages, setup
 
 # 包元信息
-NAME = 'open_lark'
+NAME = 'feishu'
 DESCRIPTION = 'python sdk for open.feishu.cn'
 URL = 'https://github.com/larksuite/open_lark'
 EMAIL = 'chenyunpeng.1024@bytedance.com'

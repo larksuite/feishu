@@ -10,8 +10,8 @@ import unittest
 
 import attr
 
-from open_lark import OpenLark
-from open_lark.dt_help import make_datatype, to_json_decorator
+from feishu import OpenLark
+from feishu.dt_help import make_datatype, to_json_decorator
 
 
 @to_json_decorator

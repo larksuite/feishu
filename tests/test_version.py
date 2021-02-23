@@ -7,5 +7,5 @@ import unittest
 
 class TestVersion(unittest.TestCase):
     def test_version(self):
-        from open_lark import __version__
+        from feishu import __version__
         assert '0.0.1' == __version__
