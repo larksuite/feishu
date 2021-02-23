@@ -13,6 +13,9 @@ import attr
 from feishu import OpenLark
 from feishu.dt_help import make_datatype, to_json_decorator
 
+app_1_app_id = os.environ.get('CI_FEISHU_APP_1_APP_ID')
+app_1_app_secret = os.environ.get('CI_FEISHU_APP_1_APP_SECRET')
+
 
 @to_json_decorator
 @attr.s
