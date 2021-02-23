@@ -7,6 +7,7 @@ import json
 import logging
 import os
 import unittest
+
 import attr
 
 from open_lark import OpenLark

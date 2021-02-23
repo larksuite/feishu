@@ -58,3 +58,5 @@ TODO
   - 如果参数有 `page_size` 和 `page_token`，一般 `page_size` 在前
   - `page_size` 默认值一般是 `20`
   - 批量操作统一以 `batch` 开头
+
+使用 [black](https://github.com/psf/black) 格式化代码

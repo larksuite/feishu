@@ -7,7 +7,7 @@ if [[ $1 == "cov" ]]
 then
     echo "cov mode"
 else
-   echo "test mode"
+    echo "test mode"
 fi
 
 cur=$(pwd)
